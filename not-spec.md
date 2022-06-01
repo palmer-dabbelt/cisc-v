@@ -33,3 +33,20 @@ track of everything, so here's my attempt to enumerate it all.
   that they will, in fact, “just work” in practice. We wouldn’t have done so for
   extensions that compilers actually need to target.
   ````
+* `H` is a valid single-letter extension, it specifies the hypervisor
+  extension.  See [Greg's post](https://github.com/riscv/riscv-isa-manual/issues/781#issuecomment-1103284237)
+  for more details, specifically
+  ````
+  As mentioned in #781 (comment):
+
+  For Priv-related extensions the naming convention being established for add-ons
+  to the Priv spec is "Sxzzz" where 'S' represents all Priv-related extensions,
+  'x' represents a category (e.g. 'v' for virt-mem extensions, 'm' for
+  machine-level extensions, 'h' for hypervisor extensions, etc.), and 'zzz' is a
+  multi-letter name for the individual extension. But the H extension itself
+  corresponds to misa.H and has a single-letter 'H' name (like the other
+  single-letter extensions that have a corresponding misa letter).
+
+  The extension naming chapter in the ISA manuals remains to be updated
+  accordingly.
+  ````
