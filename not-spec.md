@@ -50,3 +50,11 @@ track of everything, so here's my attempt to enumerate it all.
   The extension naming chapter in the ISA manuals remains to be updated
   accordingly.
   ````
+
+### Zihintpause
+
+The `Zihintpause` extension defines a `PAUSE` instruction, which directly
+contradicts the generic hint description by disallowing any architectural state
+to change.  This means the PC doesn't change, thus resulting in an infinite
+loop.  There's no way to use an instruction like this, so software is just
+assuming that `PAUSE` instruction increments the PC like a normal instruction.
