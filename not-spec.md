@@ -58,3 +58,30 @@ contradicts the generic hint description by disallowing any architectural state
 to change.  This means the PC doesn't change, thus resulting in an infinite
 loop.  There's no way to use an instruction like this, so software is just
 assuming that `PAUSE` instruction increments the PC like a normal instruction.
+
+## Privileged ISA Manual
+
+### WARL Fields
+
+The ISA spec allows for RISC-V implementations that handle illegal values to
+WARL fields by returning a different value on every read, including implicit
+reads via instructions that depend on the CSR value and explicit CSR access
+instructions.  That's not generally something that software can tolerate.
+I can't find anything that explicitly states this as being problematic, but, [Allan's
+post](https://groups.google.com/a/groups.riscv.org/g/isa-dev/c/vhNMytS1tMk/m/8PRcnyvlBwAJ)
+at least hints at some of the issues
+
+````
+Just re-read the question again - and I don't think either of us answered it.
+
+Effectively, the illegal value is never written, because if it were, then the
+HW would be required to actually use that value until it was read back.
+
+Microarchitecturally, an implementation could write the illegal value, but any
+use of it, (including reading it), must never see the illegal value.
+
+So the legal->illegal mapping could be implemented on the input or the output
+of the CSR.
+
+A scan chain might be able to see the difference, but nothing else should.
+````
