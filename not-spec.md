@@ -85,3 +85,18 @@ of the CSR.
 
 A scan chain might be able to see the difference, but nothing else should.
 ````
+
+## SBI Specification
+
+### Non-Retentive Suspend
+
+The specification provides no guarantees that it is possible to wake up from
+non-retentive suspend, see [Anup's
+post](https://github.com/riscv-non-isa/riscv-sbi-doc/issues/98) for more
+information:
+````
+Whether the timer interrupt will fire during non-retentive suspend or not is a platform/implementation-specific detail which needs to be discovered from DT/ACPI (similar to what ARM has done). The SBI specification only defines mechanism to enter suspend states.
+
+I had sent out a Linux patch to add HART DT property for this. Maybe we can move in that direction?
+(Refer, https://lore.kernel.org/all/20220727114302.302201-1-apatel@ventanamicro.com/)
+````
