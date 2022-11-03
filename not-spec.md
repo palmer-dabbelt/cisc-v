@@ -50,6 +50,39 @@ track of everything, so here's my attempt to enumerate it all.
   The extension naming chapter in the ISA manuals remains to be updated
   accordingly.
   ````
+* The profile specification says that profile names can substitute for
+  extensions, but [Krste's post](https://lists.riscv.org/g/sig-toolchains/message/486)
+  clearly says they can substitute for base ISAs as well (sligtly reformatted
+  for readibility):
+  ````
+  > On Nov 3, 2022, at 12:13 PM, Palmer Dabbelt <palmer@dabbelt.com> wrote:
+  > On Thu, 03 Nov 2022 11:53:45 PDT (-0700), krste@sifive.com wrote:
+  >> The profile strings specify a base ISA and a set of extensions.
+  >>
+  >> i.e., should not be treated just as extensions if that makes a
+  >> difference in toolchain handling.
+  >
+  > The proposed syntax in GCC is to accept things like `-march=rva22s64zkr`,
+  > which places the profile name where base ISAs usually go.  That's forbidden
+  > by the ISA string rules and we say -march takes an ISA string, so this
+  > risks running into compatibility issues later if more base ISAs are added
+  > that somehow conflict with this scheme we just made up.
+  >
+  > The language that was just added to the spec says "there will be no
+  > standard ISA extension with a name that matches the profile naming
+  > convention", which means we'd need something like `-march=rv64irva22s64zkr`
+  > in order to ensure we avoid those possible issues.  I don't really care all
+  > that much about the syntax, just trying to make sure we avoid shooting
+  > ourselves in the foot here.
+
+  Please try to be pragmatic and not pedantic here.
+
+  Folks want to write one string RVA22U64<+extensions>
+
+  If they can’t do that, fix the tool chain rules,
+
+  Krste
+  ````
 
 ### Zihintpause
 
